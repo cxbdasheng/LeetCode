@@ -3,14 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(combine(4, 2, 1))
+	fmt.Println(combine(16, 16, 1))
 }
 
 var path []int
 var result [][]int
 
 func combine(n int, k int, index int) [][]int {
-	if len(path) == k {
+	if sumArray(path) == k {
 		temp := make([]int, k)
 		copy(temp, path)
 		result = append(result, temp)
@@ -22,4 +22,13 @@ func combine(n int, k int, index int) [][]int {
 		path = path[:len(path)-1]
 	}
 	return result
+}
+
+// 求和函数
+func sumArray(arr []int) int {
+	sum := 0
+	for _, num := range arr {
+		sum += num
+	}
+	return sum
 }
