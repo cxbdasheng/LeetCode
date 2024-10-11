@@ -15,7 +15,7 @@ func lastStoneWeightII(stones []int) int {
 	target := sum / 2
 	dp := make([]int, target+1)
 	for i := 0; i < len(stones); i++ {
-		for j := target; j >= stones[i]; j-- {
+		for j := target; j >= stones[i]; j-- { //核心思想
 			if dp[j] < dp[j-stones[i]]+stones[i] {
 				dp[j] = dp[j-stones[i]] + stones[i]
 			}

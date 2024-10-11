@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var n = 1
+	var n = 42421631561
 	fmt.Println(fib(n))
 }
 func fib(n int) int {
