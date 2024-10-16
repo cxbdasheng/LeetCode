@@ -21,4 +21,5 @@ func main() {
 		}
 	}
 	fmt.Println(max)
+	max(1, 2)
 }

@@ -35,11 +35,37 @@ func main() {
 			}
 		}
 	}
-	dp := make([][]int, h)
+	if nums[0][0] == -1 || nums[0][0] >= h {
+		fmt.Println(-1)
+		return
+	}
+
+	dp := make([][][]int, n)
+	for i := 0; i < n; i++ {
+		dpM := make([][]int, m)
+		for j := 0; j < m; j++ {
+			dpM[j] = make([]int, 2)
+		}
+		dp[i] = dpM
+	}
+	dp[0][0][0] = 0
+	dp[0][0][1] = nums[0][0]
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
+			if i == 0 && j == 0 {
+				continue
+			}
+			if nums[i][j] != -1 {
+				if i > 0 && i-1 > 0 && i+1 <= n-1 {
 
+				}
+
+			}
 		}
 	}
+	fmt.Println(dp[n-1][m-1][0])
+}
+
+func overStepCheck(x, y int) bool {
 
 }
