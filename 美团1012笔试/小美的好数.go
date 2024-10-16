@@ -13,9 +13,26 @@ func main() {
 	}
 	var res int
 	for i := 0; i < n; i++ {
-		for j := 0; j < i; j++ {
-
+		if IsNice(nums[i]) {
+			res++
 		}
 	}
 	fmt.Println(res)
+}
+
+func IsNice(num int) bool {
+	var sum, c int
+	old := false
+	for num != 0 {
+		c = num % 10
+		if c&1 == 1 {
+			old = true
+		}
+		sum += c
+		num /= 10
+	}
+	if sum&1 != 1 && old {
+		return true
+	}
+	return false
 }

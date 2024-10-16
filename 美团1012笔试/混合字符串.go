@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 // 3
@@ -19,22 +18,33 @@ func main() {
 	for ; i < len(s); i++ {
 		if s[i] >= 'a' && s[i] <= 'z' {
 			if i != j {
-				temp, _ := strconv.Atoi(s[j:i])
-				nums = append(nums, temp)
-				j = i + 1
-			} else {
-				j++
+				nums = strToInt(s[j:i], nums)
+				j = i
 			}
+			j++
 		}
 	}
-
 	if i != j {
-		temp, _ := strconv.Atoi(s[j:i])
-		nums = append(nums, temp)
+		nums = strToInt(s[j:i], nums)
 	}
-	if len(nums) > k-1 {
-		fmt.Println(nums[k-1])
+	if k > len(nums) {
+		println('N')
 	} else {
-		fmt.Println(string('N'))
+		println(nums[k-1])
 	}
+}
+
+func strToInt(str string, nums []int) []int {
+	if len(str) == 1 && str[0] == '0' {
+		nums = append(nums, 0)
+		return nums
+	}
+	base := 1
+	res := 0
+	for i := len(str) - 1; i >= 0; i-- {
+		res += int(str[i]-'0') * base
+		base *= 10
+	}
+	nums = append(nums, res)
+	return nums
 }
