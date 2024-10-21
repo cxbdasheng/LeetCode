@@ -17,6 +17,7 @@ func permute(nums []int) [][]int {
 			return
 		}
 		for i := 0; i < len(numsCopy); i++ {
+			// 取过的就不取
 			if use[i] == 0 {
 				path = append(path, numsCopy[i])
 				use[i] = 1

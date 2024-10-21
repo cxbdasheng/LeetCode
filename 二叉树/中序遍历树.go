@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -7,7 +9,8 @@ type TreeNode struct {
 }
 
 func main() {
-
+	root := &TreeNode{Val: 8, Left: &TreeNode{Val: 8, Left: &TreeNode{Val: 9, Left: nil, Right: nil}, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 1, Left: nil, Right: nil}, Right: &TreeNode{Val: 7, Left: nil, Right: nil}}}, Right: &TreeNode{Val: 7, Left: nil, Right: nil}}
+	fmt.Println(levelOrder(root))
 }
 func levelOrder(root *TreeNode) [][]int {
 	var result [][]int

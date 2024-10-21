@@ -23,10 +23,11 @@ func main() {
 			}
 			j++
 		}
+		if len(s)-1 == i && i != j {
+			nums = strToInt(s[j:i], nums)
+		}
 	}
-	if i != j {
-		nums = strToInt(s[j:i], nums)
-	}
+
 	if k > len(nums) {
 		println('N')
 	} else {
