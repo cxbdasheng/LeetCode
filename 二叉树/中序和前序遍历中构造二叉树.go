@@ -18,6 +18,7 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 	}
 	rootVal := preorder[0]
 	root := &TreeNode{Val: rootVal}
+	root := &TreeNode{Val: rootVal}
 	if len(preorder) == 1 {
 		return root
 	}
