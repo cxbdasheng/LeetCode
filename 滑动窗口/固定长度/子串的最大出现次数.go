@@ -19,6 +19,17 @@ func main() {
 	fmt.Println(maxFreq("aaaaacbc", 2, 4, 6))
 }
 
+// 输入：s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4
+// 输出：2
+// 解释：子串 "aab" 在原字符串中出现了 2 次。
+// 它满足所有的要求：2 个不同的字母，长度为 3 （在 minSize 和 maxSize 范围内）。
+
+// 输入：s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3
+// 输出：2
+// 解释：子串 "aaa" 在原字符串中出现了 2 次，且它们有重叠部分。
+
+// 输入：s = "aabcabcab", maxLetters = 2, minSize = 2, maxSize = 3
+// 输出：3
 func maxFreq(s string, maxLetters int, minSize int, maxSize int) int {
 	mp := make(map[string]int)
 	if validate(s[:minSize], maxLetters) {
