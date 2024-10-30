@@ -1,11 +1,15 @@
 package main
 
+import "fmt"
+
 //给你一个下标从 0 开始的字符串 s ，这个字符串只包含 0 到 9 的数字字符。
 //
 //如果一个字符串 t 中至多有一对相邻字符是相等的，那么称这个字符串 t 是 半重复的 。例如，"0010" 、"002020" 、"0123" 、"2002" 和 "54944" 是半重复字符串，而 "00101022" （相邻的相同数字对是 00 和 22）和 "1101234883" （相邻的相同数字对是 11 和 88）不是半重复字符串。
 //请你返回 s 中最长 半重复 子字符串 的长度。
 
-import "fmt"
+func main() {
+	fmt.Println(longestSemiRepetitiveSubstring("0010"))
+}
 
 //输入：s = "52233"
 //输出：4
@@ -21,11 +25,6 @@ import "fmt"
 //输出：2
 //解释：
 //最长的半重复子字符串是 "11"。子字符串 "111" 有两个相邻的相同数字对，但最多允许选取一个。
-
-func main() {
-	fmt.Println(longestSemiRepetitiveSubstring("0010"))
-}
-
 // 1 <= s.length <= 50
 // '0' <= s[i] <= '9'
 
@@ -34,6 +33,7 @@ func longestSemiRepetitiveSubstring(s string) int {
 	m := 1
 	count := 0
 	for i := 1; i < len(s); i++ {
+		// 超过两个
 		if s[i] == s[i-1] {
 			count++
 			if count > 1 {

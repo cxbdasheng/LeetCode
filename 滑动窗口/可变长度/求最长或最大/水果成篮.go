@@ -11,6 +11,10 @@ import "fmt"
 //
 // 给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目。
 
+func main() {
+	fmt.Println(totalFruit([]int{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}))
+}
+
 //输入：fruits = [1,2,1]
 //输出：3
 //解释：可以采摘全部 3 棵树。
@@ -28,10 +32,6 @@ import "fmt"
 // 输入：fruits = [3,3,3,1,2,1,1,2,3,3,4]
 // 输出：5
 // 解释：可以采摘 [1,2,1,1,2] 这五棵树。
-func main() {
-	fmt.Println(totalFruit([]int{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}))
-}
-
 func totalFruit(fruits []int) int {
 	mp := make(map[int]int, 3)
 	m := 0

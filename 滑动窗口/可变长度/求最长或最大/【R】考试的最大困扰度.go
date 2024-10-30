@@ -40,6 +40,7 @@ func maxConsecutiveAnswers(answerKey string, k int) int {
 		} else {
 			mp[1]++
 		}
+		// 核心方法，可以有一个大于 k 另一个小于 k 就行
 		for mp[1] > k && mp[0] > k {
 			if answerKey[left] == 'F' {
 				mp[1]--

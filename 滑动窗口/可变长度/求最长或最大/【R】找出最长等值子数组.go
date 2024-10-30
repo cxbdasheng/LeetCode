@@ -28,7 +28,7 @@ func longestEqualSubarray(nums []int, k int) int {
 	ans := 0
 	posLists := make([][]int, len(nums)+1)
 	for i, x := range nums {
-		// 记录与上一个相同元素相隔多远
+		// 只存储下标，并记录与上一个相同元素相隔多远
 		// i 是当前元素 len(posLists[x]) 是之前总共有几个元素，i-len(posLists[x]) 相当于等于
 		posLists[x] = append(posLists[x], i-len(posLists[x]))
 	}

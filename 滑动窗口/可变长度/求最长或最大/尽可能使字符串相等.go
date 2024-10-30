@@ -11,6 +11,10 @@ import (
 // 如果你可以将 s 的子字符串转化为它在 t 中对应的子字符串，则返回可以转化的最大长度。
 // 如果 s 中没有子字符串可以转化成 t 中对应的子字符串，则返回 0。
 
+func main() {
+	fmt.Println(equalSubstring("abcd", "bcdf", 3))
+}
+
 // 输入：s = "abcd", t = "bcdf", maxCost = 3
 // 输出：3
 // 解释：s 中的 "abc" 可以变为 "bcd"。开销为 3，所以最大长度为 3。
@@ -23,13 +27,9 @@ import (
 // 输出：1
 // 解释：a -> a, cost = 0，字符串未发生变化，所以最大长度为 1。
 
-//1 <= s.length, t.length <= 10^5
-//0 <= maxCost <= 10^6
-//s 和 t 都只含小写英文字母。
-
-func main() {
-	fmt.Println(equalSubstring("abcd", "bcdf", 3))
-}
+// 1 <= s.length, t.length <= 10^5
+// 0 <= maxCost <= 10^6
+// s 和 t 都只含小写英文字母。
 func equalSubstring(s string, t string, maxCost int) int {
 	left := 0
 	m := 0

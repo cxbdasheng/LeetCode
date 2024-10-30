@@ -11,6 +11,12 @@ import "sort"
 //注意：你 只 能对每个下标执行 一次 此操作。
 //数组的 子序列 定义是：经由原数组删除一些元素（也可能不删除）得到的一个新数组，且在此过程中剩余元素的顺序不发生改变。
 
+// 题解：https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/solutions/2345805/pai-xu-shuang-zhi-zhen-by-endlesscheng-hbqx/
+// 通过区间查看
+func main() {
+	println(maximumBeauty([]int{4, 6, 1, 2}, 2))
+}
+
 // 输入：nums = [4,6,1,2], k = 2
 // 输出：3
 // 解释：在这个示例中，我们执行下述操作：
@@ -24,14 +30,8 @@ import "sort"
 // 解释：在这个示例中，我们无需执行任何操作。
 // 数组 nums 的美丽值是 4（整个数组）。
 
-//1 <= nums.length <= 10^5
-//0 <= nums[i], k <= 10^5
-
-// 题解：https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/solutions/2345805/pai-xu-shuang-zhi-zhen-by-endlesscheng-hbqx/
-// 通过区间查看
-func main() {
-	println(maximumBeauty([]int{4, 6, 1, 2}, 2))
-}
+// 1 <= nums.length <= 10^5
+// 0 <= nums[i], k <= 10^5
 func maximumBeauty(nums []int, k int) int {
 	sort.Ints(nums)
 	left := 0
@@ -46,3 +46,6 @@ func maximumBeauty(nums []int, k int) int {
 	}
 	return m
 }
+
+// 思路如下：考虑区间是否有重叠
+// x+k >= y-k 则证明有重叠区间，可以进行加减 y-x <= 2k
