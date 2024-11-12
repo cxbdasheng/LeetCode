@@ -28,8 +28,11 @@ func main() {
 // 输入：s = "QQQQ"
 // 输出：3
 // 解释：我们可以替换后 3 个 'Q'，使 s = "QWER"。
+
+// 主要是替换子串方式
 func balancedString(s string) int {
-	cnt, m := [4]int{}, len(s)/4 // 也可以用哈希表，不过数组更快一些
+	// 也可以用哈希表，不过数组更快一些
+	cnt, m := [4]int{}, len(s)/4
 	for i := 0; i < len(s); i++ {
 		cnt[GetIndex(s[i])]++
 	}
@@ -37,6 +40,7 @@ func balancedString(s string) int {
 		return 0 // 已经符合要求啦
 	}
 	ans, left := len(s), 0
+	// 【主要思想】：替换里面的字符串，也就是只要管外面的子符串
 	for i := 0; i < len(s); i++ {
 		cnt[GetIndex(s[i])]--
 		// 判断外面的是否符合要求

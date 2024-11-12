@@ -60,7 +60,7 @@ func shortestBeautifulSubstring(s string, k int) string {
 			left++
 		}
 		if sum == k {
-			// 大于或者等于相同字符串则往下走，然后判断字典序大于的继续往下走
+			// 【重要判断条件】大于或者等于相同字符串则往下走，然后判断字典序大于的继续往下走
 			if len(ans) > i+1-left || len(ans) == i+1-left && ans > s[left:i+1] {
 				ans = s[left : i+1]
 			}
