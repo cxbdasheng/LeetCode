@@ -36,7 +36,7 @@ func countGoodStrings(low int, high int, zero int, one int) int {
 			dp[i] = dp[i] + dp[i-zero]
 		}
 		if i >= one {
-			dp[i] = (dp[i] + dp[i-one]) % M
+			dp[i] = dp[i] + dp[i-one]
 		}
 		if i >= low {
 			ans = (dp[i] + ans) % M
