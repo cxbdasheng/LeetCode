@@ -10,6 +10,10 @@ import "fmt"
 func main() {
 	fmt.Println(jewelleryValue([][]int{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}))
 }
+
+// 输入: frame = [[1,3,1],[1,5,1],[4,2,1]]
+// 输出: 12
+// 解释: 路径 1→3→5→2→1 可以拿到最高价值的珠宝
 func jewelleryValue(frame [][]int) int {
 	dp := make([][]int, len(frame))
 	for i := range dp {
