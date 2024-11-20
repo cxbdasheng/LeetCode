@@ -13,7 +13,7 @@ const M = 1_000_000_007
 // 请你返回满足以上要求的 不同 好字符串数目。由于答案可能很大，请将结果对 109 + 7 取余 后返回。
 
 func main() {
-	fmt.Println(countGoodStrings(3, 3, 1, 1))
+	fmt.Println(countGoodStrings(3, 3, 2, 1))
 }
 
 // 输入：low = 3, high = 3, zero = 1, one = 1
@@ -32,11 +32,14 @@ func countGoodStrings(low int, high int, zero int, one int) int {
 	dp[0] = 1
 
 	for i := 1; i <= high; i++ {
+		// 如果 i≥zero，那么可以在长为 i−zero 的字符串末尾添加 zero 个 0，方案数为 f[i−zero]
 		if i >= zero {
-			dp[i] = dp[i] + dp[i-zero]
+			dp[i] = (dp[i] + dp[i-zero]) % M
 		}
+		// 如果 i≥one，那么可以在长为 i−one 的字符串末尾添加 one 个 1，方案数为 f[i−one]
 		if i >= one {
-			dp[i] = dp[i] + dp[i-one]
+			// 两类方案互斥（第 i 个字符不能既是 0 又是 1），所以用加法原理，得
+			dp[i] = (dp[i] + dp[i-one]) % M
 		}
 		if i >= low {
 			ans = (dp[i] + ans) % M
