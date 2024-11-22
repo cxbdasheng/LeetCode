@@ -18,6 +18,7 @@ import (
 func main() {
 	var nums = []int{1, 1, 1, 1, 1}
 	fmt.Println(findTargetSumWays(nums, 3))
+	fmt.Println(findTargetSumWays1(nums, 3))
 }
 func findTargetSumWays(nums []int, target int) int {
 	var sum int
@@ -36,4 +37,50 @@ func findTargetSumWays(nums []int, target int) int {
 		}
 	}
 	return dp[left]
+}
+
+func findTargetSumWays1(nums []int, target int) int {
+	s := 0
+	for _, x := range nums {
+		s += x
+	}
+	s -= abs(target)
+	if s < 0 || s%2 == 1 {
+		return 0
+	}
+	m := s / 2 // 背包容量
+	n := len(nums)
+	memo := make([][]int, n)
+	for i := range memo {
+		memo[i] = make([]int, m+1)
+		for j := range memo[i] {
+			memo[i][j] = -1 // -1 表示没有计算过
+		}
+	}
+	var dfs func(int, int) int
+	dfs = func(i, c int) (res int) {
+		if i < 0 {
+			if c == 0 {
+				return 1
+			}
+			return 0
+		}
+		p := &memo[i][c]
+		if *p != -1 { // 之前计算过
+			return *p
+		}
+		defer func() { *p = res }() // 记忆化
+		if c < nums[i] {
+			return dfs(i-1, c) // 只能不选
+		}
+		return dfs(i-1, c) + dfs(i-1, c-nums[i]) // 不选 + 选
+	}
+	return dfs(n-1, m)
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }

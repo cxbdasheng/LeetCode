@@ -9,7 +9,8 @@ import (
 // 下标从 0 开始的数组 infinite_nums 是通过无限地将 nums 的元素追加到自己之后生成的。
 // 请你从 infinite_nums 中找出满足 元素和 等于 target 的 最短 子数组，并返回该子数组的长度。如果不存在满足条件的子数组，返回 -1 。
 func main() {
-	fmt.Println(minSizeSubarray([]int{1, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1}, 83))
+	//fmt.Println(minSizeSubarray([]int{1, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1}, 83))
+	fmt.Println(minSizeSubarray([]int{1, 2, 3}, 14))
 }
 
 // 输入：nums = [1,2,3], target = 5
