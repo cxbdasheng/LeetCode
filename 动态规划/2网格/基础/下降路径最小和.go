@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"slices"
 )
 
@@ -10,6 +11,7 @@ import (
 // 具体来说，位置 (row, col) 的下一个元素应当是 (row + 1, col - 1)、(row + 1, col) 或者 (row + 1, col + 1) 。
 func main() {
 	fmt.Println(minFallingPathSum([][]int{{17, 82}, {1, -44}}))
+	fmt.Println(minFallingPathSum1([][]int{{17, 82}, {1, -44}}))
 }
 
 // 输入：matrix = [[2,1,3],[6,5,4],[7,8,9]]
@@ -42,4 +44,38 @@ func minFallingPathSum(matrix [][]int) int {
 		}
 	}
 	return slices.Min(dp[len(dp)-1])
+}
+
+/*
+*
+DFS
+*/
+func minFallingPathSum1(matrix [][]int) int {
+	n := len(matrix)
+	var dfs func(int, int) int
+	memo := make([][]int, n)
+	for i := range memo {
+		memo[i] = make([]int, n)
+		for j := range memo[i] {
+			memo[i][j] = math.MinInt
+		}
+	}
+	dfs = func(i, j int) int {
+		if j < 0 || j >= n { // 出界
+			return math.MaxInt
+		}
+		if i == 0 {
+			return matrix[0][j]
+		}
+		if memo[i][j] != math.MinInt {
+			return memo[i][j]
+		}
+		memo[i][j] = min(min(dfs(i-1, j-1), dfs(i-1, j)), dfs(i-1, j+1)) + matrix[i][j]
+		return memo[i][j]
+	}
+	ans := math.MaxInt
+	for c := 0; c < n; c++ {
+		ans = min(ans, dfs(n-1, c))
+	}
+	return ans
 }

@@ -9,7 +9,15 @@ import (
 // 每一步只能移动到下一行中相邻的结点上。相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。
 // 也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
 func main() {
+	/**
+	递推
+	*/
 	fmt.Println(minimumTotal([][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}))
+	/**
+	BFS
+	*/
+	fmt.Println(minimumTotal1([][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}))
+
 }
 
 // 输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
@@ -47,4 +55,30 @@ func minimumTotal(triangle [][]int) int {
 	}
 	fmt.Println(dp)
 	return slices.Min(dp[len(dp)-1])
+}
+
+/*
+*
+DFS
+*/
+func minimumTotal1(triangle [][]int) int {
+	var dfs func(int, int) int
+	flag := make([][]int, len(triangle))
+	memo := make([][]int, len(triangle))
+	for i := range memo {
+		memo[i] = make([]int, len(triangle[i]))
+		flag[i] = make([]int, len(triangle[i]))
+	}
+	dfs = func(i, j int) int {
+		if flag[i][j] != 0 {
+			return memo[i][j]
+		}
+		if i == len(triangle)-1 {
+			return triangle[i][j]
+		}
+		memo[i][j] = min(dfs(i+1, j)+triangle[i][j], dfs(i+1, j+1)+triangle[i][j])
+		flag[i][j] = 1
+		return memo[i][j]
+	}
+	return dfs(0, 0)
 }
