@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"math/big"
+	"slices"
 )
 
 // 给你一个整数数组 rewardValues，长度为 n，代表奖励的值。
@@ -14,6 +15,30 @@ func main() {
 	fmt.Println(maxTotalReward([]int{1, 1, 3, 3}))
 }
 func maxTotalReward(rewardValues []int) int {
-	sort.Ints(rewardValues)
+	m := slices.Max(rewardValues)
+	has := map[int]bool{}
+	for _, v := range rewardValues {
+		if v == m-1 {
+			return m*2 - 1
+		}
+		if has[v] {
+			continue
+		}
+		if has[m-1-v] {
+			return m*2 - 1
+		}
+		has[v] = true
+	}
 
+	slices.Sort(rewardValues)
+	rewardValues = slices.Compact(rewardValues) // 去重
+
+	one := big.NewInt(1)
+	f := big.NewInt(1)
+	p := new(big.Int)
+	for _, v := range rewardValues {
+		mask := p.Sub(p.Lsh(one, uint(v)), one)
+		f.Or(f, p.Lsh(p.And(f, mask), uint(v)))
+	}
+	return f.BitLen() - 1
 }
