@@ -65,11 +65,14 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
 	}
 	for i := 1; i < len(dp); i++ {
 		for j := 1; j < len(dp[i]); j++ {
-			if s1[i-1] == s3[i+j-1] && dp[i-1][j] {
-				dp[i][j] = true
+			// 下面两个条件满足一个即可
+			// 如果  s1[i-1] == s3[i+j-1] 则查看上一个 s1[i-1] 字符是否为 ture
+			if s1[i-1] == s3[i+j-1] {
+				dp[i][j] = dp[i-1][j]
 			}
-			if s2[j-1] == s3[i+j-1] && dp[i][j-1] {
-				dp[i][j] = true
+			// 如果  s2[j-1] == s3[i+j-1] 则查看上一个 s2[i-1][j-1] 字符是否为 ture
+			if s2[j-1] == s3[i+j-1] {
+				dp[i][j] = dp[i][j-1] || dp[i][j]
 			}
 		}
 	}
