@@ -26,13 +26,13 @@ func main() {
 //解释：字符串 s 中不含任何元音字母。
 
 func maxVowels(s string, k int) int {
-	max := 0
+	m := 0
 	vowel := 0
 	for i := 0; i < len(s); i++ {
 		if s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' {
 			vowel++
-			if vowel > max {
-				max = vowel
+			if vowel > m {
+				m = vowel
 			}
 		}
 		if i+1 < k {
@@ -42,5 +42,5 @@ func maxVowels(s string, k int) int {
 			vowel--
 		}
 	}
-	return max
+	return m
 }
